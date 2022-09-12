@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Settings</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+  </head>
+  <body>
+  <div class="center"><div class="settingTitle">Settings:</div></div>
+  <br>
+  <div class="settingToggleGroup">
+  <div class="settingTitle">Start Taking Photos at:</div>
+    <input type="datetime-local" value="2019-07-05T10:00" onchange="setDateTime()" id="start_time_input" name="appt" required>
+  </div>
+  <div class="settingToggleGroup">
+    <div>
+    <div class="settingTitle">Repeat Every:</div>
+    </div>
+    <div class="dropdown">
+    <button class="dropbtn" id="frequency_input">--select--</button>
+    <div class="dropdown-content">
+    <a href="#" onclick="setPhotoFrequency('Minute')">Minute</a>
+    <a href="#" onclick="setPhotoFrequency('Hour')">Hour</a>
+    <a href="#" onclick="setPhotoFrequency('Day')">Day</a>
+    <a href="#" onclick="setPhotoFrequency('Week')">Week</a>
+    <a href="#" onclick="setPhotoFrequency('Month')">Month</a>
+    </div>
+    </div>
+  </div>
+  <br>
+  <div class="center"><button class="saveButton" onclick="saveSettings()">Save</button></div>
+  </body>
+</html>
+
+<script>
+  var baseHost = document.location.origin;
+
+  document.getElementById('start_time_input').defaultValue = getTimeFromClient();
+  document.getElementById('frequency_input').innerText = "Hour";
+
+  var my_frequency ="Hour";
+  var my_start_time = start_time_input.value ;
+  
+  function setDateTime(){
+    console.log(`setting time to ${start_time_input.value}`);
+  }
+  
+  function getTimeFromClient(){
+    var now = new Date();
+    let diff = now.getTimezoneOffset()/60;
+    now.setHours(now.getHours() - diff); //adjusted for time difference
+    now.toDateString().slice(0,-5)
+    now=now.toISOString();
+    now=now.slice(0,-8);
+    return now
+  }
+
+  function setPhotoFrequency(frequencyInput){
+    console.log(`setting frequency to ${frequency_input.innerText}`);
+    frequency_input.innerText = frequencyInput ;
+    my_frequency = frequency_input.innerText ;
+  }
+
+  function update_esp(name, value) {
+    var baseHost = document.location.origin;
+    var query = `${baseHost}/control?var=${name}&val=${value}`;
+    fetch(query).then(response => {
+       console.log(`request to ${query} finished, status: ${response.status}`);
+    }) 
+  }
+  
+  function saveSettings(){
+    /* set the current time */
+    let now = getTimeFromClient() ;
+    console.log(`Submitting ${now}, ${start_time_input.value}, ${frequency_input.innerText}`);
+    update_esp("current_time",now); 
+    update_esp("start_time",start_time_input.value);
+    update_esp("frequency",frequency_input.innerText);
+  }
+</script>
+<style>
+.settingTitle{
+  font-family: Helvetica, Sans-Serif;
+  color: #3e8e41;
+}
+.settingToggleGroup{
+display: flex;
+padding: 10px 20px 10px 20px;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+
+.center {
+margin: 0;
+position: absolute;
+left: 50%;
+padding-top: 20px;
+height: 35px;
+width: 40px;
+-ms-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);
+}
+
+.saveButton {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 35px;
+width: 70px;
+border: 3px solid green;
+background-color: #3e8e41;
+color: white;
+font-size: 15px;
+border-radius: 5px;
+}
+
+/*dropdown menu-----------------*/
+.dropbtn {
+z-index: 5;
+background-color: #3e8e41;
+color: white;
+/*8padding: px;*/
+font-size: 16px;
+border: none;
+cursor: pointer;
+/*added line*/
+height: 25px;
+min-width: 100px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+position: relative;
+display: inline-block;
+
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+z-index: 4;
+display: none;
+position: absolute;
+background-color: #f9f9f9;
+min-width: 100px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+font-size: 15px;
+
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+background-color: #3e8e41;
+}
+/*----------------------*/
+.dropdown:hover .dropdown-content {
+display: block;
+}
+</style>

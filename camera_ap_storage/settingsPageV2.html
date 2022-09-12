@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Settings</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+  </head>
+  <body>
+  <div class="settingToggleGroup">
+  <div class="settingTitle">Start Taking Photos at:</div>
+    <input type="datetime-local" value="2019-06-11T10:00.711Z" onchange="setDateTime()" id="timeInput" name="appt" required>
+  </div>
+  <div class="settingToggleGroup">
+    <div class="settingTitle">Repeat Every:</div>
+    <div class="dropdown">
+    <button class="dropbtn" id="frequencyButton">--select--</button>
+    <div class="dropdown-content">
+    <a href="#" onclick="setPhotoFrequency('Hour')">Hour</a>
+    <a href="#" onclick="setPhotoFrequency('Day')">Day</a>
+    <a href="#" onclick="setPhotoFrequency('Week')">Week</a>
+    <a href="#" onclick="setPhotoFrequency('Month')">Month</a>
+    </div>
+    </div>
+  </div>
+  </body>
+  <div class="center"><button class="saveButton" onclick="saveSettings()">Save</button></div>
+</html>
+
+<script>
+document.getElementById('timeInput').defaultValue = getTimeFromClient();
+document.getElementById('frequencyButton').innerText = "Hour"
+function setDateTime(){
+  var time=timeInput.value;
+}
+function getTimeFromClient(){
+  var now = new Date();
+  let diff = now.getTimezoneOffset()/60;
+  now.setHours(now.getHours() - diff);//adjusted for time difference
+  now.toDateString().slice(0,-5)
+  now=now.toISOString();
+  now=now.slice(0,-8)
+  return now
+}
+
+function setPhotoFrequency(frequencyInput){
+  frequencyButton.innerText = frequencyInput;
+  photoFrequency=frequencyInput;
+}
+
+function saveSettings(){
+  time=timeInput.value;
+  time=new Date(time);
+  currentTime=getTimeFromClient()
+  currentTime=new Date(currentTime)
+  var timeTillStart=(time.getTime()-currentTime.getTime())/1000;
+  var photoFreq=document.getElementById('frequencyButton').innerText;
+  if (photoFreq=="Hour"){
+    var photoTimer=3600;
+  }
+  else if(photoFreq="Day"){
+    var photoTimer=86400;
+  }
+  else if(photoFreq="Week"){
+    var photoTimer=604800;
+  }
+  else if(photoFreq="Month"){
+    var photoTimer=2628288;
+  }
+  if (timeTillStart>=0){
+    console.log("Saving new changes...\nTime Till Start: "+timeTillStart+"\nphotoTimer: "+photoTimer+"\nCurrent Time: "+currentTime)
+    alert("Changes Saved!");
+  }
+  else{
+    alert("Input(s) are invalid. Please fix and try again")
+  }
+}
+</script>
+<style>.settingToggleGroup{
+display: flex;
+padding: 10px 20px 10px 20px;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+
+.center {
+margin: 0;
+position: absolute;
+left: 50%;
+padding-top: 20px;
+height: 35px;
+width: 40px;
+-ms-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);
+}
+
+.saveButton {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 35px;
+width: 70px;
+border: 3px solid green;
+background-color: #4CAF50;
+color: white;
+font-size: 15px;
+border-radius: 5px;
+}
+
+/*dropdown menu-----------------*/
+.dropbtn {
+z-index: 5;
+background-color: #3e8e41;
+color: white;
+/*8padding: px;*/
+font-size: 16px;
+border: none;
+cursor: pointer;
+/*added line*/
+height: 25px;
+min-width: 100px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+position: relative;
+display: inline-block;
+
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+z-index: 4;
+display: none;
+position: absolute;
+background-color: #f9f9f9;
+min-width: 100px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+font-size: 15px;
+
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+background-color: #3e8e41;
+}
+/*----------------------*/
+.dropdown:hover .dropdown-content {
+display: block;
+}
+</style>
+    

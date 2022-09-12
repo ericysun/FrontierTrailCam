@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Robot Zero One Was Here</title>
+    </head>
+    <body>
+        <div id="logo">
+            <label for="nav-toggle-cb" id="nav-toggle">&#9776;&nbsp;&nbsp;Toggle settings</label>
+         </div>
+
+        <fieldset>
+          <legend>Set current time:</legend>
+
+          <label for="current-time">Enter the current time:</label>
+          <input type="datetime-local" id="current_time"
+           name="current_time" onchange="handle(this)" value="2022-06-12T19:30">
+        </fieldset>
+
+        <fieldset>
+          <legend>Set frequency:</legend>
+  
+          <div>
+            <input type="radio" id="daily" name="frequency" value="daily" 
+                   onchange="handle(this)" checked>
+            <label for="daily">Daily</label>
+          </div>
+          <div>
+            <input type="radio" id="weekly" name="frequency" value="weekly" 
+                   onchange="handle(this)" >
+            <label for="weekly">Weekly</label>
+          </div>
+          <div>
+            <input type="radio" id="monthly" name="frequency" value="monthly" 
+                   onchange="handle(this)" >
+            <label for="monthly">Monthly</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+           <legend>Set picture time / day:</legend>
+           <label for="picture_time">Choose time for picture:</label>
+           <input type="time" id="picture_time" 
+               name="picture_time" onchange="handle(this)">
+        </fieldset>
+    </body>
+</html>
+<script>
+function handle(src){
+  var baseHost = document.location.origin;
+  var value=src.value;
+  var name = src.name
+
+  const query = `${baseHost}/control?var=${name}&val=${value}`
+
+  fetch(query)
+  .then(response => {
+     console.log(`request to ${query} finished, status: ${response.status}`)
+  })
+}
+</script>
