@@ -31,7 +31,7 @@
 int pictureNumber = 0;
 int sleep_time = TIME_TO_SLEEP  ;
 
-const char* ssid = "ESP32-CAM Access Point";
+const char* ssid = "Frontier TrailCam Access Point";
 const char* password = "123456789";
 RTC_DS3231 rtc;
 Preferences preferences ;
