@@ -17,7 +17,10 @@ Frontier TrailCam is a simple, open-source timelapse camera system. It runs on t
 
 [![Webserver Demo](https://github.com/user-attachments/assets/0e3d233f-7d71-49d6-9f52-8da293f8193f)](https://github.com/user-attachments/assets/edf6cd34-a822-4fc0-88a2-eb6a8e2fd074)
 ### Case
-- The `TrailCam Case` folder includes CAD files and drafting sketches for the three pieces of the case
+- The `TrailCam Case` folder includes CAD files and drafting sketches for the three pieces of the case:
 - Top Cover: Mounts ESP32 cam, RTC module
 - Bottom Cover: Mounts battery pack and charging circuitry
 - Camera Cover: gives nice aesthetic to the camera
+
+### Notes
+Frontier TrailCam doesn't track the changes in daylight savings time. It also cannot take photos while it is being recharged.
