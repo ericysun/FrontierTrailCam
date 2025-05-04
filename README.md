@@ -14,7 +14,6 @@ Frontier TrailCam is a simple, open-source timelapse camera system. It runs on t
 - We first land on the homepage, which gives an overview of all of the functionality.
 - I then pressed on the "Stream" button, which takes us to the page where we can change the settings of the photos(i.e. resolution, saturation, etc). By clicking the "Start Stream" button, we get to see a live stream of the camera view.
 - Next we navigate to the "Settings" page where we can change settings related to the photo taking schedule: what time/date to start taking photos, and what interval after that it should take a photo. After the settings are changed, we get a pop-up confirming the changes have been uploaded to the TrailCam.
-[![Webserver Demo]([https://github.com/user-attachments/assets/edf6cd34-a822-4fc0-88a2-eb6a8e2fd074](https://github.com/user-attachments/assets/0e3d233f-7d71-49d6-9f52-8da293f8193f))](https://github.com/user-attachments/assets/edf6cd34-a822-4fc0-88a2-eb6a8e2fd074)
 
 [![Webserver Demo](https://github.com/user-attachments/assets/0e3d233f-7d71-49d6-9f52-8da293f8193f)](https://github.com/user-attachments/assets/edf6cd34-a822-4fc0-88a2-eb6a8e2fd074)
 ### Case
