@@ -6,7 +6,9 @@ Frontier TrailCam is a simple, open-source timelapse camera system. It runs on t
 ### Technical Overview
 - Frontier TrailCam is built around the ESP32-CAM, an Arduino-compatible system-on-chip (SoC). The device features two physical controls on its side: a power switch and a mode button.
 - When powered on, pressing the mode button during startup launches the TrailCam’s built-in web server. Through this interface, users can adjust camera settings such as photo resolution and capture interval, as well as view a live feed to help position the camera. If the button is not pressed at startup, the camera will operate in automatic mode, capturing photos based on the previously saved settings
+- While waiting between photo captures, the ESP32-CAM enters deep sleep mode, and a DS3231 RTC module tracks time until the next wakeup to save power.
 - Captured images are stored on a microSD card located at the top of the device. Be sure to format the card using the FAT32 file system for proper functionality.
+- Two 18650 batteries are used to provide power.
 
 ### Webserver
 - Here is a quick showcase of the Frontier TrailCam Webserver:
@@ -20,7 +22,18 @@ Frontier TrailCam is a simple, open-source timelapse camera system. It runs on t
 - The `TrailCam Case` folder includes CAD files and drafting sketches for the three pieces of the case:
 - Top Cover: Mounts ESP32 cam, RTC module
 - Bottom Cover: Mounts battery pack and charging circuitry
-- Camera Cover: gives nice aesthetic to the camera
+- Camera Cover: gives a nice aesthetic to the camera
+
+### Electrical & Circuitry
+- The main electrical components are:
+- 1 x ESP32 CAM AI Thinker
+- 1 x DPDT Switch
+- 1 x SPST Button
+- 1 x DS3231 RTC module
+- 1 x TP4056 Battery Charging Board
+- 2 x 18650 Battery
+- 2 x 18650 Battery Holder
+- Wiring is shown in the `camera_ap_storage` folder
 
 ### Notes
-Frontier TrailCam doesn't track the changes in daylight savings time. It also cannot take photos while it is being recharged.
+Frontier TrailCam doesn't track the changes in daylight savings time. It also cannot take photos while it is being recharged. Battery life is estimated at about one month at a photo taking interval of one a day.
