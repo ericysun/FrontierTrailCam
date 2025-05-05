@@ -34,7 +34,7 @@ Frontier TrailCam is a simple, open-source timelapse camera system. It runs on t
 - 2 x 18650 Battery
 - 2 x 18650 Battery Holder
 - 1 x Boost Converter
-- Wiring photo is shown in the `camera_ap_storage` folder
+- Wiring photo is shown in the `TrailCam Case` folder
 The batteries, their holders, and the charging module are mounted in the bottom part. The batteries are wired to the charging module. Cables from the charging module are attached to a boost converter, which steps up the voltage from the 3.7V 18650 batteries to the 5V input needed for the ESP32Cam. After going through the boost converter, the power cable is connected to the ESP32CAM. In the top part, the ESP32CAM, RTC module, and two switches are mounted. The DPDT switch is wired to the ESP32 cam and acts as the on button. The SPST button is wired to the ESP32CAM. When pushed, the ESP32CAM will enter the webserver mode. The RTC module keeps track of time while the ESP is waiting between photo-taking times. It's wired to  the ESP32Cam to send a signal to get it to exit deep sleep.
 
 ### Notes
