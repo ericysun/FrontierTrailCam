@@ -325,7 +325,7 @@ static esp_err_t cmd_handler(httpd_req_t *req){
       preferences.putULong64("start_time", (uint64_t)t);
       Serial.printf("picture time set to %ld\n", (unsigned long)t);
     }
-    else if(!strcmp(variable, "frequency")) {
+    else if(!strcmp(variable, "frequency")) {//Currently this code doesn't take daylight savings time into account once deployed, feature to add in the future
       Serial.printf("freq set to %s\n", value);
       if (tolower(value[0]) == 'm' && tolower(value [1]) == 'o') { // Month
           preferences.putChar("frequency", 'm'); // using m from strftime method
