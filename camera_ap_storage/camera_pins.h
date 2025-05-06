@@ -1,4 +1,4 @@
-
+//All development and deployment testing done on CAMERA_MODEL_AI_THINKER, use of that model is prefered
 #if defined(CAMERA_MODEL_WROVER_KIT)
 #define PWDN_GPIO_NUM    -1
 #define RESET_GPIO_NUM   -1
