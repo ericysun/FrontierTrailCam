@@ -30,7 +30,7 @@ Frontier TrailCam is a simple, open-source timelapse camera system. It runs on t
 - 1 x DPDT Switch
 - 1 x SPST Button
 - 1 x DS3231 RTC module
-- 1 x TP4056 Battery Charging Board
+- 1 x TP4056 Battery Charging Board (USB-C & microUSB versions of the board are now available)
 - 2 x 18650 Battery
 - 2 x 18650 Battery Holder
 - 1 x Boost Converter
