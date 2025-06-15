@@ -40,5 +40,5 @@ Frontier TrailCam is a simple, open-source timelapse camera system. It runs on t
 ### Notes
 Frontier TrailCam doesn't track the changes in daylight savings time. Must be off while charging. It also cannot take photos while it is being recharged. Battery life is estimated at about one month at a photo taking interval of one a day.
 
-Feedback: Bug and Feature Suggestion
+# Feedback: Bug and Feature Suggestion
 https://forms.gle/BYaLges5TQjX2J139
